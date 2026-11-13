@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)file:///C:/Users/yunhw/Downloads/hakka-hangul.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학가 한글 변환기 (Hakka Hangul)</title>
+    <script src="./학가 한글 변환기 (Hakka Hangul)_files/saved_resource"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./학가 한글 변환기 (Hakka Hangul)_files/css2" rel="stylesheet">
+    <!-- 첫가끝(옛한글) 및 결합형(완성형) 동시 지원 웹폰트 (나눔바른고딕 옛한글) -->
+    <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunGothicYetHangul.woff" rel="preload" as="font" type="font/woff" crossorigin="">
+    <style>
+        /* 옛한글(첫가끝) 및 결합형(완성형) 모두 지원하는 폰트 설정 */
+        @font-face {
+            font-family: 'NanumBarunGothicYetHangul';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunGothicYetHangul.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'OldHangulFallback';
+            src: local('NanumBarunGothic YetHangul'), local('함초롬바탕'), local('HCR Batang'), local('함초롬돋움'), local('HCR Dotum'), local('은 바탕'), local('UnBatang'), local('Malgun Gothic');
+        }
+
+        :root {
+            --hakka-earth: #8C4A32;      /* 토루(土樓)의 적갈색 황토 */
+            --hakka-earth-dark: #5E2E1D; /* 짙은 나무/기와색 */
+            --hakka-indigo: #233D4D;     /* 객가 남염(藍染) 쪽빛 */
+            --hakka-paper: #F7F3EA;      /* 고풍스러운 한지/선지색 */
+            --hakka-card: #FFFDF9;       /* 밝은 미색 카드 */
+            --hakka-border: #D9CEBE;     /* 따뜻한 테두리 */
+            --hakka-gold: #B8860B;       /* 은은한 황금 포인트 */
+        }
+
+        body {
+            background-color: var(--hakka-paper);
+            color: #2C241E;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(140, 74, 50, 0.06) 0%, transparent 60%),
+                repeating-linear-gradient(45deg, rgba(140, 74, 50, 0.015) 0px, rgba(140, 74, 50, 0.015) 2px, transparent 2px, transparent 8px);
+        }
+
+        .font-serif-kr {
+            font-family: 'Noto Serif KR', 'NanumBarunGothicYetHangul', 'OldHangulFallback', serif;
+        }
+
+        .hangul-output {
+            font-family: 'Noto Serif KR', 'NanumBarunGothicYetHangul', 'OldHangulFallback', serif;
+            font-feature-settings: "ccmp" 1, "locl" 1;
+            line-height: 1.9;
+            letter-spacing: 0.01em;
+        }
+
+        /* 토루(Tulou) 동심원 문양 배경 장식 */
+        .tulou-ring {
+            border: 1.5px solid rgba(140, 74, 50, 0.14);
+            border-radius: 9999px;
+            pointer-events: none;
+        }
+
+        /* 객가 전통 창살(花窗) 패턴 테두리 효과 */
+        .hakka-frame {
+            background-color: var(--hakka-card);
+            border: 1px solid var(--hakka-border);
+            box-shadow: 0 10px 30px -10px rgba(44, 36, 30, 0.1), 0 0 0 4px rgba(247, 243, 234, 0.8), 0 0 0 5px rgba(140, 74, 50, 0.15);
+        }
+
+        /* 커스텀 스크롤바 */
+        textarea::-webkit-scrollbar, .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        textarea::-webkit-scrollbar-track, .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(217, 206, 190, 0.3);
+            border-radius: 4px;
+        }
+        textarea::-webkit-scrollbar-thumb, .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(140, 74, 50, 0.4);
+            border-radius: 4px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover, .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(140, 74, 50, 0.65);
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.relative{position:relative}.-bottom-56{bottom:-14rem}.-left-56{left:-14rem}.-right-48{right:-12rem}.-top-48{top:-12rem}.bottom-6{bottom:1.5rem}.left-1\/2{left:50%}.z-0{z-index:0}.z-10{z-index:10}.z-50{z-index:50}.mx-1{margin-left:0.25rem;margin-right:0.25rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-3{margin-bottom:0.75rem}.mb-5{margin-bottom:1.25rem}.mr-1{margin-right:0.25rem}.mt-0\.5{margin-top:0.125rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.h-12{height:3rem}.h-2{height:0.5rem}.h-2\.5{height:0.625rem}.h-3\.5{height:0.875rem}.h-4{height:1rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-\[140px\]{height:140px}.h-\[260px\]{height:260px}.h-\[380px\]{height:380px}.h-\[400px\]{height:400px}.h-\[500px\]{height:500px}.h-\[540px\]{height:540px}.max-h-32{max-height:8rem}.min-h-\[210px\]{min-height:210px}.min-h-screen{min-height:100vh}.w-12{width:3rem}.w-2{width:0.5rem}.w-2\.5{width:0.625rem}.w-3\.5{width:0.875rem}.w-4{width:1rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-\[140px\]{width:140px}.w-\[1px\]{width:1px}.w-\[260px\]{width:260px}.w-\[380px\]{width:380px}.w-\[400px\]{width:400px}.w-\[500px\]{width:500px}.w-\[540px\]{width:540px}.w-full{width:100%}.max-w-5xl{max-width:64rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.resize-none{resize:none}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3\.5{gap:0.875rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.overflow-y-auto{overflow-y:auto}.overflow-x-hidden{overflow-x:hidden}.whitespace-pre-wrap{white-space:pre-wrap}.break-words{overflow-wrap:break-word}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-sm{border-radius:0.125rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-\[\#5E2E1D\]{--tw-border-opacity:1;border-color:rgb(94 46 29 / var(--tw-border-opacity, 1))}.border-\[\#D9CEBE\]{--tw-border-opacity:1;border-color:rgb(217 206 190 / var(--tw-border-opacity, 1))}.border-\[\#E6DDD0\]{--tw-border-opacity:1;border-color:rgb(230 221 208 / var(--tw-border-opacity, 1))}.border-\[\#E6DDD0\]\/80{border-color:rgb(230 221 208 / 0.8)}.border-\[\#E8DFD1\]{--tw-border-opacity:1;border-color:rgb(232 223 209 / var(--tw-border-opacity, 1))}.bg-\[\#233D4D\]{--tw-bg-opacity:1;background-color:rgb(35 61 77 / var(--tw-bg-opacity, 1))}.bg-\[\#8C4A32\]{--tw-bg-opacity:1;background-color:rgb(140 74 50 / var(--tw-bg-opacity, 1))}.bg-\[\#D9CEBE\]{--tw-bg-opacity:1;background-color:rgb(217 206 190 / var(--tw-bg-opacity, 1))}.bg-\[\#F2ECE1\]{--tw-bg-opacity:1;background-color:rgb(242 236 225 / var(--tw-bg-opacity, 1))}.bg-\[\#F7F3EA\]{--tw-bg-opacity:1;background-color:rgb(247 243 234 / var(--tw-bg-opacity, 1))}.bg-\[\#F7F3EA\]\/70{background-color:rgb(247 243 234 / 0.7)}.bg-\[\#FFFDF9\]{--tw-bg-opacity:1;background-color:rgb(255 253 249 / var(--tw-bg-opacity, 1))}.bg-\[\#FFFDF9\]\/80{background-color:rgb(255 253 249 / 0.8)}.bg-\[\#FFFDF9\]\/85{background-color:rgb(255 253 249 / 0.85)}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.p-1\.5{padding:0.375rem}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-3{padding-bottom:0.75rem}.pl-2{padding-left:0.5rem}.pr-1{padding-right:0.25rem}.pt-2\.5{padding-top:0.625rem}.text-center{text-align:center}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-0.025em}.text-\[\#1E1915\]{--tw-text-opacity:1;color:rgb(30 25 21 / var(--tw-text-opacity, 1))}.text-\[\#233D4D\]{--tw-text-opacity:1;color:rgb(35 61 77 / var(--tw-text-opacity, 1))}.text-\[\#2C241E\]{--tw-text-opacity:1;color:rgb(44 36 30 / var(--tw-text-opacity, 1))}.text-\[\#4A3F35\]{--tw-text-opacity:1;color:rgb(74 63 53 / var(--tw-text-opacity, 1))}.text-\[\#5C4E42\]{--tw-text-opacity:1;color:rgb(92 78 66 / var(--tw-text-opacity, 1))}.text-\[\#5E2E1D\]{--tw-text-opacity:1;color:rgb(94 46 29 / var(--tw-text-opacity, 1))}.text-\[\#6B5B4E\]{--tw-text-opacity:1;color:rgb(107 91 78 / var(--tw-text-opacity, 1))}.text-\[\#7D6E5D\]{--tw-text-opacity:1;color:rgb(125 110 93 / var(--tw-text-opacity, 1))}.text-\[\#8C4A32\]{--tw-text-opacity:1;color:rgb(140 74 50 / var(--tw-text-opacity, 1))}.text-\[\#D9CEBE\]{--tw-text-opacity:1;color:rgb(217 206 190 / var(--tw-text-opacity, 1))}.text-\[\#E6B86A\]{--tw-text-opacity:1;color:rgb(230 184 106 / var(--tw-text-opacity, 1))}.text-\[\#F7F3EA\]{--tw-text-opacity:1;color:rgb(247 243 234 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.placeholder-\[\#A39585\]::placeholder{--tw-placeholder-opacity:1;color:rgb(163 149 133 / var(--tw-placeholder-opacity, 1))}.opacity-0{opacity:0}.opacity-50{opacity:0.5}.opacity-70{opacity:0.7}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.selection\:bg-\[\#8C4A32\] *::selection{--tw-bg-opacity:1;background-color:rgb(140 74 50 / var(--tw-bg-opacity, 1))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.selection\:bg-\[\#8C4A32\]::selection{--tw-bg-opacity:1;background-color:rgb(140 74 50 / var(--tw-bg-opacity, 1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:border-\[\#8C4A32\]:hover{--tw-border-opacity:1;border-color:rgb(140 74 50 / var(--tw-border-opacity, 1))}.hover\:bg-\[\#703824\]:hover{--tw-bg-opacity:1;background-color:rgb(112 56 36 / var(--tw-bg-opacity, 1))}.hover\:bg-\[\#F2ECE1\]:hover{--tw-bg-opacity:1;background-color:rgb(242 236 225 / var(--tw-bg-opacity, 1))}.hover\:text-\[\#8C4A32\]:hover{--tw-text-opacity:1;color:rgb(140 74 50 / var(--tw-text-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group[open] .group-open\:rotate-90{--tw-rotate:90deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 640px){.sm\:flex-row{flex-direction:row}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-8{padding-top:2rem;padding-bottom:2rem}.sm\:text-2xl{font-size:1.5rem;line-height:2rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}}@media (min-width: 768px){.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style></head>
+<body class="min-h-screen flex flex-col justify-between relative overflow-x-hidden selection:bg-[#8C4A32] selection:text-white">
+
+    <!-- 배경 토루(土樓) 동심원 장식 -->
+    <div class="fixed -top-48 -right-48 w-[500px] h-[500px] tulou-ring flex items-center justify-center opacity-70 z-0">
+        <div class="w-[380px] h-[380px] tulou-ring flex items-center justify-center">
+            <div class="w-[260px] h-[260px] tulou-ring flex items-center justify-center">
+                <div class="w-[140px] h-[140px] tulou-ring"></div>
+            </div>
+        </div>
+    </div>
+    <div class="fixed -bottom-56 -left-56 w-[540px] h-[540px] tulou-ring flex items-center justify-center opacity-50 z-0">
+        <div class="w-[400px] h-[400px] tulou-ring flex items-center justify-center">
+            <div class="w-[260px] h-[260px] tulou-ring"></div>
+        </div>
+    </div>
+
+    <!-- 상단 헤더 -->
+    <header class="relative z-10 border-b border-[#D9CEBE] bg-[#FFFDF9]/85 backdrop-blur-sm">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5">
+                <!-- 객가 토루 & 인장 아이콘 SVG -->
+                <div class="w-12 h-12 rounded-xl bg-[#8C4A32] text-[#F7F3EA] flex items-center justify-center shadow-md border border-[#5E2E1D] shrink-0">
+                    <svg class="w-8 h-8" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="2"></circle>
+                        <circle cx="18" cy="18" r="9.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"></circle>
+                        <circle cx="18" cy="18" r="4.5" stroke="currentColor" stroke-width="1.5"></circle>
+                        <path d="M18 4V9M18 27V32M4 18H9M27 18H32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-xl sm:text-2xl font-bold font-serif-kr text-[#2C241E] tracking-tight">
+                            학ˋ화ˉᅌᅧᆫˉ운ˇ변ˉ온ˉ히ˉ
+                        </h1>
+                        <span class="px-2 py-0.5 text-xs font-medium rounded-md bg-[#233D4D] text-[#F7F3EA]">
+                            객가 한글 변환기
+                        </span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-[#6B5B4E] mt-0.5">
+                        hagˋ faˉ ngienˉ vunˇ bienˉ vonˉ hiˉ
+                    </p>
+                </div>
+            </div>
+
+            <!-- 방언 / 성조 체계 선택기 -->
+            <div class="flex items-center gap-2 bg-[#F2ECE1] p-1.5 rounded-xl border border-[#D9CEBE]">
+                <span class="text-xs font-semibold text-[#5E2E1D] pl-2 pr-1">성조 표기:</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-[#8C4A32] text-white shadow-sm">
+                    원문 성조 그대로 유지
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="relative z-10 flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        
+        <!-- 예시 문장 빠른 입력 바 -->
+        <div class="mb-5 flex flex-wrap items-center gap-2">
+            <span class="text-xs font-semibold text-[#6B5B4E] flex items-center gap-1 mr-1">
+                <svg class="w-3.5 h-3.5 text-[#8C4A32]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                예시 불러오기:
+            </span>
+            <button onclick="loadSample('giungˊ hiˋ fadˋ coiˇ seu lienˇ lienˇ.')" class="text-xs px-2.5 py-1.5 rounded-lg bg-[#FFFDF9] hover:bg-[#F2ECE1] text-[#2C241E] border border-[#D9CEBE] transition shadow-xs">
+                giungˊ hiˋ fadˋ coiˇ seu lienˇ lienˇ
+            </button>
+            <button onclick="loadSample('iuˊ nginˇ coiˊ moˇ?')" class="text-xs px-2.5 py-1.5 rounded-lg bg-[#FFFDF9] hover:bg-[#F2ECE1] text-[#2C241E] border border-[#D9CEBE] transition shadow-xs">
+                iuˊ nginˇ coiˊ moˇ?
+            </button>
+            <button onclick="loadSample('siinˊ tiˋ kongˊ kien')" class="text-xs px-2.5 py-1.5 rounded-lg bg-[#FFFDF9] hover:bg-[#F2ECE1] text-[#2C241E] border border-[#D9CEBE] transition shadow-xs">
+                siinˊ tiˋ kongˊ kien
+            </button>
+            <button onclick="loadSample('van sii iˇ i')" class="text-xs px-2.5 py-1.5 rounded-lg bg-[#FFFDF9] hover:bg-[#F2ECE1] text-[#2C241E] border border-[#D9CEBE] transition shadow-xs">
+                van sii iˇ i
+            </button>
+            <button onclick="loadSample('xinˊ ngienˇ kuai log')" class="text-xs px-2.5 py-1.5 rounded-lg bg-[#FFFDF9] hover:bg-[#F2ECE1] text-[#2C241E] border border-[#D9CEBE] transition shadow-xs">
+                xinˊ ngienˇ kuai log
+            </button>
+        </div>
+
+        <!-- 입력 & 출력 2단 패널 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            <!-- 좌측: 객가어 입력창 -->
+            <section class="hakka-frame rounded-2xl p-5 flex flex-col">
+                <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#E8DFD1]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#233D4D]"></span>
+                        <h2 class="font-bold text-sm sm:text-base text-[#233D4D] font-serif-kr">객가어 로마자 입력</h2>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button onclick="clearInput()" class="text-xs px-2.5 py-1 rounded-lg text-[#6B5B4E] hover:text-[#8C4A32] hover:bg-[#F2ECE1] transition">
+                            지우기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 특수문자/성조 입력 도우미 툴바 -->
+                <div class="flex flex-wrap items-center gap-1 mb-3 p-2 rounded-xl bg-[#F7F3EA] border border-[#E6DDD0]">
+                    <span class="text-[11px] font-medium text-[#6B5B4E] mr-1">성조/특수문자:</span>
+                    <button onclick="insertChar('ˊ')" class="w-7 h-7 rounded-md bg-white border border-[#D9CEBE] hover:border-[#8C4A32] hover:text-[#8C4A32] font-bold text-sm shadow-2xs transition" title="양평/상성 (ˊ)">ˊ</button>
+                    <button onclick="insertChar('ˇ')" class="w-7 h-7 rounded-md bg-white border border-[#D9CEBE] hover:border-[#8C4A32] hover:text-[#8C4A32] font-bold text-sm shadow-2xs transition" title="음평/거성 (ˇ)">ˇ</button>
+                    <button onclick="insertChar('ˋ')" class="w-7 h-7 rounded-md bg-white border border-[#D9CEBE] hover:border-[#8C4A32] hover:text-[#8C4A32] font-bold text-sm shadow-2xs transition" title="상성/음입 (ˋ)">ˋ</button>
+                    <button onclick="insertChar('ˉ')" class="w-7 h-7 rounded-md bg-white border border-[#D9CEBE] hover:border-[#8C4A32] hover:text-[#8C4A32] font-bold text-sm shadow-2xs transition" title="거성/양입 (ˉ)">ˉ</button>
+                    <button onclick="insertChar('⁺')" class="w-7 h-7 rounded-md bg-white border border-[#D9CEBE] hover:border-[#8C4A32] hover:text-[#8C4A32] font-bold text-sm shadow-2xs transition" title="해륙 양입 (⁺)">⁺</button>
+                    <div class="h-4 w-[1px] bg-[#D9CEBE] mx-1"></div>
+                    <button onclick="insertChar('ü')" class="px-2 h-7 rounded-md bg-white border border-[#D9CEBE] hover:border-[#8C4A32] hover:text-[#8C4A32] font-medium text-xs shadow-2xs transition" title="원순 전설 고모음 ü">ü</button>
+                    <button onclick="insertChar('ii')" class="px-2 h-7 rounded-md bg-white border border-[#D9CEBE] hover:border-[#8C4A32] hover:text-[#8C4A32] font-medium text-xs shadow-2xs transition" title="설첨 모음 ii (ㅡ)">ii</button>
+                    <button onclick="insertChar('ng')" class="px-2 h-7 rounded-md bg-white border border-[#D9CEBE] hover:border-[#8C4A32] hover:text-[#8C4A32] font-medium text-xs shadow-2xs transition" title="연구개 비음 ng">ng</button>
+                </div>
+
+                <textarea id="hakka-input" rows="8" class="w-full flex-1 bg-transparent resize-none focus:outline-none text-base sm:text-lg text-[#2C241E] placeholder-[#A39585] leading-relaxed" placeholder="객가어 로마자 표기를 입력하세요...
+예: giungˊ hiˋ fadˋ coiˇ seu lienˇ lienˇ." oninput="convertText()">giungˊ hiˋ fadˋ coiˇ seu lienˇ lienˇ.</textarea>
+
+                <div class="mt-3 pt-2.5 border-t border-[#E8DFD1] flex items-center justify-between text-xs text-[#7D6E5D]">
+                    <span>구두점 유지 · 한글 원칙적 무띄어쓰기 · 무성조 음절 <code class="font-bold text-[#8C4A32]">ˉ</code> 자동 부여</span>
+                    <span id="char-count">37 자</span>
+                </div>
+            </section>
+
+            <!-- 우측: 한글 변환 출력창 -->
+            <section class="hakka-frame rounded-2xl p-5 flex flex-col relative">
+                <!-- 출력란 상단 헤더 및 복사 버튼 -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-[#E8DFD1]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#8C4A32]"></span>
+                        <h2 class="font-bold text-sm sm:text-base text-[#8C4A32] font-serif-kr">학가 한글 출력</h2>
+                        <span id="mode-badge" class="text-[11px] px-2 py-0.5 rounded-full bg-[#F2ECE1] text-[#5E2E1D] border border-[#D9CEBE]">완성형 + 첫가끝 혼용</span>
+                    </div>
+
+                    <!-- 출력란 위 복사 버튼 -->
+                    <button id="copy-btn" onclick="copyOutput()" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#8C4A32] hover:bg-[#703824] active:scale-95 text-white text-xs sm:text-sm font-medium shadow-sm transition-all cursor-pointer">
+                        <svg id="copy-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+                        </svg>
+                        <span id="copy-text">결과 복사</span>
+                    </button>
+                </div>
+
+                <!-- 출력 본문 영역 -->
+                <div class="flex-1 min-h-[210px] rounded-xl bg-[#F7F3EA]/70 border border-[#E6DDD0] p-4 flex flex-col justify-between">
+                    <div id="hangul-output" class="hangul-output text-xl sm:text-2xl text-[#1E1915] break-words whitespace-pre-wrap">규ᇰˊ히ˋ활ˋᄎᆡˇᄉᆕˉ련ˇ련ˇ.</div>
+                    
+                    <!-- 음운 전사 중간 과정(IPA/키릴 매핑) 토글 미리보기 -->
+                    <div class="mt-4 pt-2.5 border-t border-[#E6DDD0]/80">
+                        <details class="group">
+                            <summary class="text-xs text-[#6B5B4E] cursor-pointer hover:text-[#8C4A32] flex items-center justify-between select-none">
+                                <span class="flex items-center gap-1 font-medium">
+                                    <svg class="w-3.5 h-3.5 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    음운 전사 과정 및 구성 방식 보기
+                                </span>
+                                <span id="syllable-stats" class="text-[11px] text-[#8C4A32]">총 7음절 (완성형 4 / 첫가끝 3)</span>
+                            </summary>
+                            <div class="mt-2 p-2.5 rounded-lg bg-white/80 border border-[#E6DDD0] text-xs text-[#4A3F35] space-y-1.5 custom-scroll max-h-32 overflow-y-auto">
+                                <div><span class="font-semibold text-[#233D4D]">1단계 (음소 매핑):</span> <span id="debug-step1" class="font-mono">гйуң, · хи · фат, · цой · сєў · лйєн, · лйєн,</span></div>
+                                <div><span class="font-semibold text-[#8C4A32]">2단계 (음운 재규칙):</span> <span id="debug-step2" class="font-mono">гйуң, · хи · хўат, · цой · сыў; · лйє;н, · лйє;н,</span></div>
+                                <div><span class="font-semibold text-[#5E2E1D]">3단계 (자모 전사):</span> <span id="debug-step3" class="font-mono">ㄱ+ㅠ+ㆁˊ · ㅎ+ㅣˋ · ㅎ+ㅘ+ㄹˋ · ㅊ+ㆎˇ · ㅅ+ᆕˉ · ㄹ+ㅕ+ㄴˇ · ㄹ+ㅕ+ㄴˇ</span></div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- 인코딩 안내 배너 -->
+                <div class="mt-3 pt-2.5 border-t border-[#E8DFD1] flex flex-wrap items-center justify-between gap-2 text-[11px] text-[#6B5B4E]">
+                    <div class="flex items-center gap-1.5">
+                        <span class="inline-block w-2 h-2 rounded-sm bg-[#233D4D]"></span>
+                        <span>현대한글: <strong>완성형(NFC)</strong></span>
+                        <span class="mx-1 text-[#D9CEBE]">|</span>
+                        <span class="inline-block w-2 h-2 rounded-sm bg-[#8C4A32]"></span>
+                        <span>옛한글: <strong>첫가끝(Johab)</strong></span>
+                        <span class="mx-1 text-[#D9CEBE]">|</span>
+                        <span><strong>원칙적 무띄어쓰기</strong></span>
+                    </div>
+                    <span class="text-[#8C4A32] font-medium">무성조 음절은 ˉ 자동 추가</span>
+                </div>
+            </section>
+        </div>
+
+        <!-- 규칙 요약 카드 (하단 참조용) -->
+        <section class="mt-8 hakka-frame rounded-2xl p-5">
+            <h3 class="text-sm font-bold font-serif-kr text-[#2C241E] mb-3 flex items-center gap-2">
+                <svg class="w-4 h-4 text-[#8C4A32]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                적용된 학가 한글 음운·표기 규칙 안내
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-[#4A3F35]">
+                <div class="p-3 rounded-xl bg-[#F7F3EA] border border-[#E6DDD0]">
+                    <div class="font-bold text-[#233D4D] mb-1">1. 성모(초성) 및 순음화</div>
+                    <ul class="space-y-1 list-disc list-inside text-[#5C4E42]">
+                        <li><code class="bg-white px-1 rounded">f+모음</code> → 후음화(<code class="bg-white px-1 rounded">ㅎ+ㅜ계</code>), <code class="bg-white px-1 rounded">v+모음</code> → <code class="bg-white px-1 rounded">ㅇ+ㅜ계</code></li>
+                        <li><code class="bg-white px-1 rounded">ng</code> → 옛이응(<code class="bg-white px-1 rounded">ㆁ</code>), <code class="bg-white px-1 rounded">zh</code> → <code class="bg-white px-1 rounded">ᅐ</code>, <code class="bg-white px-1 rounded">ch</code> → <code class="bg-white px-1 rounded">ᅕ</code></li>
+                        <li><code class="bg-white px-1 rounded">sh</code> → <code class="bg-white px-1 rounded">ᄾ</code>, <code class="bg-white px-1 rounded">r</code> → 반치음(<code class="bg-white px-1 rounded">ㅿ</code>), <code class="bg-white px-1 rounded">rh</code> → <code class="bg-white px-1 rounded">ㅇ</code></li>
+                    </ul>
+                </div>
+                <div class="p-3 rounded-xl bg-[#F7F3EA] border border-[#E6DDD0]">
+                    <div class="font-bold text-[#8C4A32] mb-1">2. 운모(중성·종성) 및 결합</div>
+                    <ul class="space-y-1 list-disc list-inside text-[#5C4E42]">
+                        <li><code class="bg-white px-1 rounded">au/iau/eu/ou</code> → <code class="bg-white px-1 rounded">ᅶ / ᅸ / ᅻ / ᅾ</code> (옛모음)</li>
+                        <li><code class="bg-white px-1 rounded">ü</code> → <code class="bg-white px-1 rounded">ㆌ(ㅟ+ㅣ)</code>, <code class="bg-white px-1 rounded">ii</code> → <code class="bg-white px-1 rounded">ㅡ</code></li>
+                        <li>입성 종성 <code class="bg-white px-1 rounded">-b/-p, -d/-t, -g/-k</code> → <code class="bg-white px-1 rounded">ㅂ, ㄹ, ㄱ</code></li>
+                        <li>성절 비음 <code class="bg-white px-1 rounded">ng, m, hm</code> → 모음 없이 첫가끝(<code class="bg-white px-1 rounded">ᄋᅠᆼ, ᄋᅠᆷ, ᄒᅠᆷ</code>)</li>
+                    </ul>
+                </div>
+                <div class="p-3 rounded-xl bg-[#F7F3EA] border border-[#E6DDD0]">
+                    <div class="font-bold text-[#5E2E1D] mb-1">3. 한글 조합 및 성조·띄어쓰기</div>
+                    <ul class="space-y-1 list-disc list-inside text-[#5C4E42]">
+                        <li>현대한글 자모 범위 내 음절은 <strong>완성형 음절(가~힣)</strong>로 자동 결합</li>
+                        <li>옛자모(<code class="bg-white px-1 rounded">ㆁ, ㅿ, ᅐ, ᅕ, ᄾ, ᅶ, ㆍ</code> 등) 포함 시 <strong>첫가끝(U+1100/1160/11A8)</strong>으로 조합</li>
+                        <li>입력 성조(<code class="bg-white px-1 rounded">ˊ, ˇ, ˋ, ˉ, ⁺</code> 등)는 그대로 수용하고, <strong>성조가 없는 음절은 <code class="bg-white px-1 rounded">ˉ</code>를 자동 추가</strong>하며 한글은 원칙상 <strong>띄어쓰기를 하지 않음</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 하단 푸터 -->
+    <footer class="relative z-10 border-t border-[#D9CEBE] bg-[#FFFDF9]/80 py-4 text-center text-xs text-[#7D6E5D]">
+        <p>학가 한글 (Hakka Hangul) 전사기 · 현대한글 완성형 &amp; 옛한글 첫가끝 유니코드 표준 지원</p>
+    </footer>
+
+    <!-- 토스트 알림 메시지 -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-xl bg-[#233D4D] text-[#F7F3EA] text-sm font-medium shadow-lg opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#E6B86A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <span id="toast-msg">복사되었습니다.</span>
+    </div>
+
+    <script>
+        /**
+         * 예시 문장 로드
+         */
+        function loadSample(text) {
+            const inputEl = document.getElementById('hakka-input');
+            inputEl.value = text;
+            convertText();
+        }
+
+        /**
+         * 입력창 초기화
+         */
+        function clearInput() {
+            const inputEl = document.getElementById('hakka-input');
+            inputEl.value = '';
+            inputEl.focus();
+            convertText();
+        }
+
+        /**
+         * 커서 위치에 성조/특수문자 삽입
+         */
+        function insertChar(ch) {
+            const inputEl = document.getElementById('hakka-input');
+            const start = inputEl.selectionStart;
+            const end = inputEl.selectionEnd;
+            const val = inputEl.value;
+            inputEl.value = val.substring(0, start) + ch + val.substring(end);
+            inputEl.focus();
+            inputEl.selectionStart = inputEl.selectionEnd = start + ch.length;
+            convertText();
+        }
+
+        /**
+         * 토스트 메시지 표시 (alert 대체)
+         */
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.textContent = msg;
+            toast.classList.remove('opacity-0', 'translate-y-2');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            clearTimeout(window.toastTimer);
+            window.toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-2');
+            }, 2200);
+        }
+
+        /**
+         * 출력 결과 클립보드 복사 (document.execCommand('copy') 사용)
+         */
+        function copyOutput() {
+            const outputText = document.getElementById('hangul-output').textContent;
+            if (!outputText.trim()) {
+                showToast('복사할 변환 결과가 없습니다.');
+                return;
+            }
+
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = outputText;
+            tempTextarea.style.position = 'fixed';
+            tempTextarea.style.left = '-9999px';
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            tempTextarea.setSelectionRange(0, 99999);
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    const copyTextEl = document.getElementById('copy-text');
+                    const origText = copyTextEl.textContent;
+                    copyTextEl.textContent = '복사 완료!';
+                    showToast('변환된 학가 한글이 클립보드에 복사되었습니다.');
+                    setTimeout(() => {
+                        copyTextEl.textContent = origText;
+                    }, 1500);
+                } else {
+                    showToast('복사에 실패했습니다. 직접 드래그하여 복사해 주세요.');
+                }
+            } catch (err) {
+                showToast('복사 중 오류가 발생했습니다.');
+            }
+            document.body.removeChild(tempTextarea);
+        }
+
+        /* ==========================================================================
+           한글 조합기: 현대한글(완성형 NFC) 및 옛한글(첫가끝 U+1100/U+1160/U+11A8)
+           ========================================================================== */
+
+        // 현대 한글 완성형 테이블
+        const MODERN_CHOSEONG = [
+            'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ',
+            'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
+        ];
+        const MODERN_JUNGSEONG = [
+            'ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ',
+            'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'
+        ];
+        const MODERN_JONGSEONG = [
+            '', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ',
+            'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ',
+            'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
+        ];
+
+        // 호환 자모 -> 첫가끝(Hangul Jamo) 유니코드 매핑
+        const COMPAT_TO_CHO = {
+            'ㄱ': '\u1100', 'ㄲ': '\u1101', 'ㄴ': '\u1102', 'ㄷ': '\u1103', 'ㄸ': '\u1104',
+            'ㄹ': '\u1105', 'ㅁ': '\u1106', 'ㅂ': '\u1107', 'ㅃ': '\u1108', 'ㅅ': '\u1109',
+            'ㅆ': '\u110A', 'ㅇ': '\u110B', 'ㅈ': '\u110C', 'ㅉ': '\u110D', 'ㅊ': '\u110E',
+            'ㅋ': '\u110F', 'ㅌ': '\u1110', 'ㅍ': '\u1111', 'ㅎ': '\u1112',
+            // 옛한글 초성 (호환 자모 및 첫가끝 자모 모두 지원)
+            'ㆁ': '\u114C', '\u114C': '\u114C', // 옛이응
+            'ㅿ': '\u1140', '\u1140': '\u1140', // 반치음
+            'ᅘ': '\u1158', '\u1158': '\u1158', // 쌍히읗
+            'ᅐ': '\u1150', '\u1150': '\u1150', // 치두음 지읒
+            'ᅕ': '\u1155', '\u1155': '\u1155', // 치두음 치읓
+            'ᅑ': '\u1151', '\u1151': '\u1151', // 치두음 쌍지읒
+            'ᄾ': '\u113E', '\u113E': '\u113E', // 치두음 시옷
+            'ᄿ': '\u113F', '\u113F': '\u113F'  // 치두음 쌍시옷
+        };
+
+        const COMPAT_TO_JUNG = {
+            'ㅏ': '\u1161', 'ㅐ': '\u1162', 'ㅑ': '\u1163', 'ㅒ': '\u1164', 'ㅓ': '\u1165',
+            'ㅔ': '\u1166', 'ㅕ': '\u1167', 'ㅖ': '\u1168', 'ㅗ': '\u1169', 'ㅘ': '\u116A',
+            'ㅙ': '\u116B', 'ㅚ': '\u116C', 'ㅛ': '\u116D', 'ㅜ': '\u116E', 'ㅝ': '\u116F',
+            'ㅞ': '\u1170', 'ㅟ': '\u1171', 'ㅠ': '\u1172', 'ㅡ': '\u1173', 'ㅢ': '\u1174',
+            'ㅣ': '\u1175',
+            // 옛한글 중성
+            'ᅶ': '\u1176', '\u1176': '\u1176', // ㅏㅗ
+            'ᅸ': '\u1178', '\u1178': '\u1178', // ㅑㅗ
+            'ᅻ': '\u117B', '\u117B': '\u117B', // ㅓㅜ
+            'ᅾ': '\u117E', '\u117E': '\u117E', // ㅕㅜ
+            'ᆂ': '\u1182', '\u1182': '\u1182', // ㅗㅓ
+            'ㆇ': '\u1184', '\u1184': '\u1184', // ㅛㅑ
+            'ㆈ': '\u1185', '\u1185': '\u1185', // ㅛㅒ
+            'ㆉ': '\u1188', '\u1188': '\u1188', // ㅛㅣ
+            'ㆊ': '\u1189', '\u1189': '\u1189', // ㅠㅕ
+            'ㆋ': '\u118A', '\u118A': '\u118A', // ㅠㅖ
+            'ㆌ': '\u118C', '\u118C': '\u118C', // ㅠㅣ
+            'ㆍ': '\u119E', '\u119E': '\u119E', // 아래아
+            'ᆠ': '\u11A0', '\u11A0': '\u11A0', // 아래아+ㅜ (ъў)
+            'ㆎ': '\u11A1', '\u11A1': '\u11A1', // 아래애
+            'ᆢ': '\u11A2', '\u11A2': '\u11A2', // 쌍아래아
+            'ᆕ': '\u1195', '\u1195': '\u1195', // ㅡㅜ (ыў)
+            'ᆖ': '\u1196', '\u1196': '\u1196', // йы
+            // 한글 확장-B 옛중성 (스펙: ᅟힺ, ᅟힼ)
+            'ힺ': '\uD7BA', '\uD7BA': '\uD7BA',
+            'ힼ': '\uD7BC', '\uD7BC': '\uD7BC'
+        };
+
+        const COMPAT_TO_JONG = {
+            '': '',
+            'ㄱ': '\u11A8', 'ㄲ': '\u11A9', 'ㄳ': '\u11AA', 'ㄴ': '\u11AB', 'ㄵ': '\u11AC',
+            'ㄶ': '\u11AD', 'ㄷ': '\u11AE', 'ㄹ': '\u11AF', 'ㄺ': '\u11B0', 'ㄻ': '\u11B1',
+            'ㄼ': '\u11B2', 'ㄽ': '\u11B3', 'ㄾ': '\u11B4', 'ㄿ': '\u11B5', 'ㅀ': '\u11B6',
+            'ㅁ': '\u11B7', 'ㅂ': '\u11B8', 'ㅄ': '\u11B9', 'ㅅ': '\u11BA', 'ㅆ': '\u11BB',
+            'ㅇ': '\u11BC', 'ㅈ': '\u11BD', 'ㅊ': '\u11BE', 'ㅋ': '\u11BF', 'ㅌ': '\u11C0',
+            'ㅍ': '\u11C1', 'ㅎ': '\u11C2',
+            'ㆁ': '\u11F0', '\u11F0': '\u11F0'
+        };
+
+        /**
+         * 초성, 중성, 종성, 방점을 받아 현대한글이면 완성형(NFC), 옛한글 포함 시 첫가끝(Johab Jamo)으로 조합
+         * 스펙의 ᅟힺ / ᅟힼ 를 반영: 중성이 ힺ/ힼ 이면 초성 채움자(ᅟ U+115F)를 사용하지 않고
+         * 일반 초성 + 확장B 중성으로 조합 (스펙 표기 ᅟힺ는 "중성 채움자+확장중성" 의미로 해석)
+         */
+        function composeHangulSyllable(cho, jung, jong, toneMark) {
+            const effectiveCho = cho || 'ㅇ';
+            // 중성이 없는 성절 자음(예: ng -> ᄋᅠᆼ, m -> ᄋᅠᆷ, hm -> ᄒᅠᆷ) 처리
+            if (!jung) {
+                if (jong) {
+                    const choJamo = COMPAT_TO_CHO[effectiveCho] || '\u110B';
+                    const jungJamo = '\u1160'; // 중성 채움자 (Hangul Jungseong Filler)
+                    const jongJamo = COMPAT_TO_JONG[jong] || jong;
+                    return {
+                        text: choJamo + jungJamo + jongJamo + (toneMark || ''),
+                        isOld: true
+                    };
+                }
+                if (cho) {
+                    return {
+                        text: cho + (toneMark || ''),
+                        isOld: false
+                    };
+                }
+                return {
+                    text: (toneMark || ''),
+                    isOld: false
+                };
+            }
+
+            // 중성이 ힺ(U+D7BA) 이거나 ힼ(U+D7BC)인 경우 → 스펙의 ᅟힺ / ᅟힼ 처리
+            // 초성이 없는 경우에는 초성 채움자(U+115F)를 앞에 붙임
+            if (jung === 'ힺ' || jung === '\uD7BA' || jung === 'ힼ' || jung === '\uD7BC') {
+                const jungJamo = (jung === 'ힺ' || jung === '\uD7BA') ? '\uD7BA' : '\uD7BC';
+                const jongJamo = jong ? (COMPAT_TO_JONG[jong] || '') : '';
+                if (!cho || cho === 'ㅇ') {
+                    // 스펙 표기 ᅟힺ / ᅟힼ : 초성 채움자 + 확장 중성
+                    return {
+                        text: '\u115F' + jungJamo + jongJamo + (toneMark || ''),
+                        isOld: true
+                    };
+                }
+                const choJamo = COMPAT_TO_CHO[effectiveCho] || '\u110B';
+                return {
+                    text: choJamo + jungJamo + jongJamo + (toneMark || ''),
+                    isOld: true
+                };
+            }
+
+            const choIdx = MODERN_CHOSEONG.indexOf(effectiveCho);
+            const jungIdx = MODERN_JUNGSEONG.indexOf(jung);
+            const jongIdx = MODERN_JONGSEONG.indexOf(jong || '');
+
+            // 1) 현대 한글 완성형 범위 내인 경우 -> 완성형(가~힣) 조합
+            if (choIdx !== -1 && jungIdx !== -1 && jongIdx !== -1) {
+                const code = 0xAC00 + (choIdx * 21 + jungIdx) * 28 + jongIdx;
+                return {
+                    text: String.fromCharCode(code) + (toneMark || ''),
+                    isOld: false
+                };
+            }
+
+            // 2) 옛한글 자모가 하나라도 포함된 경우 -> 첫가끝(초성+중성+종성) 조합
+            const choJamo = COMPAT_TO_CHO[effectiveCho] || '\u110B';
+            const jungJamo = COMPAT_TO_JUNG[jung] || '\u1160';
+            const jongJamo = jong ? (COMPAT_TO_JONG[jong] || '') : '';
+
+            return {
+                text: choJamo + jungJamo + jongJamo + (toneMark || ''),
+                isOld: true
+            };
+        }
+
+        /* ==========================================================================
+           객가어 음운 규칙 엔진 (사용자 정의 스펙 기반)
+           ========================================================================== */
+
+        /**
+         * 연속 로마자를 음절로 분할
+         * 규칙: (С)ГСГ(С) → (С)Г.СГ(С) 우선 (maximal onset)
+         *   예) manga → ma.nga (not man.ga)
+         *       hakga → hak.ga (kg는 유효 초성 아님)
+         * 단독 m / n / ng 도 음절로 취급
+         */
+        function segmentSyllables(roman) {
+            if (!roman) return [];
+
+            const TONE_RE = /^[ˊˇˋˉ⁺ˆ`1-9]+/;
+            // 유효 초성 (긴 것 우선) — maximal onset 판정에 사용
+            const VALID_ONSETS = ['zh','ch','sh','rh','ng','b','p','m','f','v','d','t','n','l','g','k','h','z','j','c','q','s','x','r','y'];
+            const ONSET_RE = /^(zh|ch|sh|rh|ng|[bpmfvdtnlgkhzjcqsxry])/i;
+            // 맵에 수록된 모음군 (삼중·이중모음) — Г.ГГ 분할 대상이 아님
+            // 긴 것 우선: uai, iai, iau, ieu, uei …
+            // ioi 등 삼중모음 우선 (io+i 로 쪼개지지 않게 → йой → йєй → ㅖ)
+            const KNOWN_NUCLEUS_RE = /^(ioi|yoi|uai|uei|iai|iau|ieu|iou|ii|ee|oo|iu|ui|ü[aeo]?|[iu][aeou]|[aeou][iu])/i;
+            // 단모음
+            const SINGLE_VOWEL_RE = /^[aeiouü]/i;
+            // 순수 모음 연속
+            const VOWEL_RUN_RE = /^[aeiouü]+/i;
+            // 성절 비음: (초성)?+(ng|n|m), 뒤에 모음 없고 n+g+모음(ng onset)도 아님
+            // hm, gm, km, ng, m, n 등
+            const SYLLABIC_NASAL_RE = /^(?:zh|ch|sh|rh|ng|[bpmfvdtnlgkhzjcqsxry])?(?:ng|n|m)(?![aeiouü]|g[aeiouü])/i;
+
+            /** 자음 덩어리 끝에서 가장 긴 유효 초성 길이 반환 (없으면 0) */
+            function longestValidOnsetLen(cons) {
+                const lower = cons.toLowerCase();
+                for (let len = Math.min(lower.length, 3); len >= 1; len--) {
+                    const cand = lower.slice(lower.length - len);
+                    if (VALID_ONSETS.includes(cand)) return len;
+                }
+                return 0;
+            }
+
+            const result = [];
+            let i = 0;
+            const s = roman;
+
+            while (i < s.length) {
+                // 성조만 → 직전 음절에 부착
+                const toneOnly = s.slice(i).match(TONE_RE);
+                if (toneOnly) {
+                    if (result.length > 0) result[result.length - 1] += toneOnly[0];
+                    i += toneOnly[0].length;
+                    continue;
+                }
+
+                const start = i;
+
+                // ── A) 성절 비음
+                const nas = s.slice(i).match(SYLLABIC_NASAL_RE);
+                if (nas) {
+                    i += nas[0].length;
+                    const tm = s.slice(i).match(TONE_RE);
+                    if (tm) i += tm[0].length;
+                    result.push(s.slice(start, i));
+                    continue;
+                }
+
+                // ── B) 일반 음절
+                // onset (optional)
+                const on = s.slice(i).match(ONSET_RE);
+                if (on) i += on[0].length;
+
+                // nucleus (required)
+                // 1) 맵에 있는 모음군(iu, ui, ia, ai …)은 한 핵으로 유지
+                // 2) 맵에 없는 ГГГ 만 Г.ГГ 로 분할
+                const vowelRun = s.slice(i).match(VOWEL_RUN_RE);
+                let nucLen = 0;
+                const known = s.slice(i).match(KNOWN_NUCLEUS_RE);
+                if (known) {
+                    // 맵 수록 모음군 → 통째로 핵
+                    // 단, {Г}i{Г} → {Г}.i{Г} 우선: Vi 뒤에 모음이 오면 첫 모음만 취함
+                    // 예: aia → a.ia (ai.a 아님), uia → u.ia
+                    let len = known[0].length;
+                    if (len >= 2 && /i$/i.test(known[0])) {
+                        const afterVi = s.slice(i + len);
+                        if (/^[aeiouü]/i.test(afterVi)) {
+                            len = known[0].length - 1; // 끝 i 제외
+                        }
+                    }
+                    nucLen = len;
+                } else if (vowelRun && vowelRun[0].length >= 3) {
+                    // 맵에 없는 모음 3+ 연속 → Г.ГГ (첫 모음만)
+                    nucLen = 1;
+                } else if (vowelRun && vowelRun[0].length === 2 && !on) {
+                    // 맵에 없는 초성 없는 ГГ → 한 핵
+                    nucLen = 2;
+                } else {
+                    const single = s.slice(i).match(SINGLE_VOWEL_RE);
+                    if (!single) {
+                        if (i === start) i++;
+                        result.push(s.slice(start, i));
+                        continue;
+                    }
+                    nucLen = 1;
+                }
+                i += nucLen;
+
+                // ── coda 결정
+                // 음절말 자음은 b d g m n ng 만 허용 (k t p 불가)
+                // (C)VC¹ 뒤에 자음이 와도 C¹(유효 종성)은 유지
+                const afterNuc = s.slice(i);
+                // 유효 종성만 매칭 (ng 우선)
+                const codaMatch = afterNuc.match(/^(ng|[bdgmn])/i);
+                if (codaMatch) {
+                    const coda = codaMatch[0];
+                    const afterCoda = afterNuc.slice(coda.length);
+                    const nextIsVowel = /^[aeiouü]/i.test(afterCoda);
+                    // n 다음이 g+모음이면 ng 초성으로 넘김 (ma.nga)
+                    const nBecomesNgOnset = /^n$/i.test(coda) && /^g[aeiouü]/i.test(afterCoda);
+
+                    if (nBecomesNgOnset) {
+                        // coda 안 취함 → 다음 음절이 ng… 로 시작
+                    } else if (nextIsVowel) {
+                        // V C V → maximal onset: C는 다음 초성
+                        // (종성 안 취함)
+                    } else {
+                        // 뒤가 자음/끝/성조 → 종성으로 취함
+                        // (C)VC¹C… 에서 C¹ 유지
+                        i += coda.length;
+                    }
+                }
+                // k t p 등 비허용 종성은 여기서 취하지 않음 → 다음 음절 초성/비음절로 처리
+
+                // trailing tone
+                const tm = s.slice(i).match(TONE_RE);
+                if (tm) i += tm[0].length;
+
+                result.push(s.slice(start, i));
+            }
+
+            return result.filter(x => x.length > 0);
+        }
+
+        /**
+         * 개별 객가어 음절(로마자 + 성조)을 변환
+         * 입력된 성조는 그대로 수용하며,
+         * 실제 음절(단독 m/n/ng 포함)에만 성조가 없을 때 'ˉ'를 자동 추가
+         * 비음절 조각에는 ˉ를 붙이지 않음
+         */
+        function transcribeSyllable(rawSyllable) {
+            let tone = '';
+            let body = rawSyllable;
+            let isSyllable = true;
+
+            // 끝에 붙은 성조 기호 추출
+            const toneMatch = body.match(/([ˊˇˋˉ⁺ˆ`1-9]+)$/);
+            if (toneMatch) {
+                tone = toneMatch[1];
+                body = body.slice(0, -tone.length);
+            }
+
+            if (!body) {
+                // 성조만 있는 경우 등
+                return { out: tone, step1: '', step2: '', step3: tone, isOld: false };
+            }
+
+            // 음절 여부 판정: 모음이 있거나 성절 비음(m/n/ng 및 hm/gm 등)
+            const hasVowel = /[aeiouü]/i.test(body);
+            const isSyllabicNasal = !hasVowel && /^(?:zh|ch|sh|rh|ng|[bpmfvdtnlgkhzjcqsxry])?(?:ng|n|m)$/i.test(body);
+            isSyllable = hasVowel || isSyllabicNasal;
+
+            // 비음절 조각 → 그대로 출력, ˉ 붙이지 않음
+            if (!isSyllable) {
+                return {
+                    out: body + tone,
+                    step1: '',
+                    step2: '',
+                    step3: body + tone,
+                    isOld: false
+                };
+            }
+
+            // 음절인데 성조가 없으면 ˉ 부여
+            if (!tone) {
+                tone = 'ˉ';
+            }
+
+            // 경음(대문자 초성: P, T, K, H, C, Q, CH, S, X, SH) 보존을 위해 초성부와 나머지 분리
+            let s = body;
+            s = s.replace(/^(CH|SH)/, m => m === 'CH' ? 'Ч' : 'Ш');
+            s = s.replace(/^(P|T|K|H|C|Q|S|X)/, m => {
+                const upperMap = {
+                    'P': 'П', 'T': 'Т', 'K': 'К', 'H': 'Х',
+                    'C': 'Ц', 'Q': 'Ћ', 'S': 'С', 'X': 'Щ'
+                };
+                return upperMap[m] || m;
+            });
+            s = s.toLowerCase();
+
+            // ---------------------------------------------------------
+            // [1단계: 초기 음소 매핑]
+            // ---------------------------------------------------------
+            // 장모음 ee, oo 우선 치환 (스펙: ee → є̂, oo → о̂)
+            s = s.replace(/ee/g, 'є̂');
+            s = s.replace(/oo/g, 'о̂');
+
+            // 성절 비음(단독 ng/n/m 및 자음+ng/n/m, 모음 없는 경우) 처리
+            if (!/[aeiouü]/.test(s.replace(/є̂|о̂/g, ''))) {
+                const syllabicNasalMatch = s.match(/^(.*?)(ng|n|m)$/);
+                if (syllabicNasalMatch) {
+                    const rawOnset = syllabicNasalMatch[1];
+                    const rawCoda = syllabicNasalMatch[2];
+
+                    const codaCyr = rawCoda === 'ng' ? 'ң,' : (rawCoda === 'n' ? 'н,' : 'м,');
+                    const codaJamo = rawCoda === 'ng' ? 'ㆁ' : (rawCoda === 'n' ? 'ㄴ' : 'ㅁ');
+
+                    let onsetCyr = '';
+                    let choJamo = 'ㅇ';
+
+                    if (rawOnset) {
+                        let o = rawOnset;
+                        o = o.replace(/zh/g, 'џ').replace(/ch/g, 'ч').replace(/sh/g, 'ш').replace(/rh/g, 'ж').replace(/ng/g, 'ң');
+                        const initConsMap = {
+                            'b': 'б', 'p': 'п', 'm': 'м', 'f': 'ф', 'v': 'в',
+                            'd': 'д', 't': 'т', 'n': 'н', 'l': 'л',
+                            'g': 'г', 'k': 'к', 'h': 'х',
+                            'z': 'ѕ', 'j': 'ђ', 'c': 'ц', 'q': 'ћ',
+                            's': 'с', 'x': 'щ', 'r': 'Ж', 'y': 'й'
+                        };
+                        o = o.replace(/[bpmfvdtnlgkhzjcqsxry]/g, ch => initConsMap[ch] || ch);
+                        onsetCyr = o;
+
+                        const choMap = {
+                            'б': 'ㅂ', 'п': 'ㅍ', 'П': 'ㅃ', 'м': 'ㅁ',
+                            'д': 'ㄷ', 'т': 'ㅌ', 'Т': 'ㄸ', 'н': 'ㄴ', 'л': 'ㄹ',
+                            'г': 'ㄱ', 'к': 'ㅋ', 'К': 'ㄲ',
+                            'ң': 'ㆁ', 'њ': 'ㆁ',
+                            'х': 'ㅎ', 'Х': 'ᅘ',
+                            'ѕ': 'ㅈ', 'ђ': 'ㅈ', 'џ': 'ᅐ',
+                            'ц': 'ㅊ', 'ћ': 'ㅊ', 'ч': 'ᅕ',
+                            'Ц': 'ㅉ', 'Ћ': 'ㅉ', 'Ч': 'ᅑ',
+                            'ќ': 'ㅿ', 'с': 'ㅅ', 'С': 'ㅆ', 'щ': 'ㅅ', 'Щ': 'ㅆ',
+                            'ш': 'ᄾ', 'Ш': 'ᄿ', 'Ж': 'ㅿ'
+                        };
+                        choJamo = choMap[o] || 'ㅇ';
+                    }
+
+                    const s1 = onsetCyr + codaCyr;
+                    const composed = composeHangulSyllable(choJamo, '', codaJamo, tone);
+                    return {
+                        out: composed.text,
+                        step1: s1,
+                        step2: s1,
+                        step3: `${choJamo}+∅+${codaJamo}${tone}`,
+                        isOld: composed.isOld
+                    };
+                }
+            }
+
+            // 음절말 종성(coda) 표기 — b d g m n ng 만 허용 (k t p 불가)
+            s = s.replace(/([aeiouüє̂о̂])(ng)$/g, '$1ң,');
+            s = s.replace(/([aeiouüє̂о̂])([bdgmn])$/g, (_, v, c) => {
+                const codaMap = {
+                    'b': 'п,',
+                    'd': 'т,',
+                    'g': 'к,',
+                    'm': 'м,', 'n': 'н,'
+                };
+                return v + codaMap[c];
+            });
+
+            // 복자음 및 특수 초성 매핑 (긴 패턴 우선)
+            s = s.replace(/ngu([aeio])/g, 'ңв$1');
+            s = s.replace(/ng(i)/g, 'њ$1');
+            s = s.replace(/ng/g, 'ң');
+            s = s.replace(/gu([aeio])/g, 'гв$1');
+            s = s.replace(/ku([aeio])/g, 'кв$1');
+
+            s = s.replace(/zh/g, 'џ');
+            s = s.replace(/ch/g, 'ч');
+            s = s.replace(/sh/g, 'ш');
+            s = s.replace(/rh/g, 'ж');
+
+            // 단일 자음 매핑
+            const initConsMap = {
+                'b': 'б', 'p': 'п', 'm': 'м', 'f': 'ф', 'v': 'в',
+                'd': 'д', 't': 'т', 'n': 'н', 'l': 'л',
+                'g': 'г', 'k': 'к', 'h': 'х',
+                'z': 'ѕ', 'j': 'ђ', 'c': 'ц', 'q': 'ћ',
+                's': 'с', 'x': 'щ', 'r': 'Ж', 'y': 'й'
+            };
+            s = s.replace(/[bpmfvdtnlgkhzjcqsxry]/g, ch => initConsMap[ch] || ch);
+
+            // 모음 및 활음 매핑 (긴 패턴 우선)
+            s = s.replace(/ii/g, 'ы');
+            s = s.replace(/iu/g, 'йу');
+            s = s.replace(/ui/g, 'ўи');
+
+            s = s.replace(/ü([aeo])/g, 'ҩ$1');
+            s = s.replace(/i([aeou])/g, 'й$1');
+            s = s.replace(/u([aeo])/g, 'ў$1');
+            s = s.replace(/([aeo])i/g, '$1й');
+            s = s.replace(/([aeo])u/g, '$1ў');
+
+            const vowelMap = {
+                'a': 'а', 'e': 'є', 'i': 'и', 'o': 'о', 'u': 'у', 'ü': 'ү'
+            };
+            s = s.replace(/[aeiouü]/g, ch => vowelMap[ch] || ch);
+
+            const step1 = s;
+
+            // ---------------------------------------------------------
+            // [2단계: 음운 재규칙 (rewrite)]
+            // ---------------------------------------------------------
+            // 순치음 후음화 규칙
+            // фў → х  (ŭ만 흡수). фу는 아래 @규칙으로 хўу → ўу→у → ху
+            s = s.replace(/фў/g, 'х');
+            s = s.replace(/вў/g, 'ў');
+            s = s.replace(/фи/g, 'хуй');
+            s = s.replace(/ви/g, 'уй');
+            s = s.replace(/ф([аєиоуүыє̂о̂])/g, 'хў$1');
+            s = s.replace(/в([аєиоуүыє̂о̂])/g, 'ў$1');
+            s = s.replace(/ж/g, 'й');
+
+            // ўу → у  (예: fun → хўун → хун → 훈)
+            s = s.replace(/ўу/g, 'у');
+
+            // 원순 연구개음 활음화
+            s = s.replace(/гв/g, 'гў');
+            s = s.replace(/кв/g, 'кў');
+            s = s.replace(/ңв/g, 'ңў');
+
+            // ── 1단계: {∅|ў}єт → єк;  /  {∅|ў}єн → єң;
+            // ※ йєт, йєн 은 해당 안 됨
+            s = s.replace(/ўєт,/g, 'ўєк,;');
+            s = s.replace(/ўєн,/g, 'ўєң,;');
+            s = s.replace(/(?<!й)єт,/g, 'єк,;');
+            s = s.replace(/(?<!й)єн,/g, 'єң,;');
+
+            // ү -> йуй;
+            s = s.replace(/ү/g, 'йуй;');
+
+            // ── 2단계: 모음 rewrite
+            // "йой" -> "йєй;"  (cioi/yoi → ㅖ)
+            s = s.replace(/йой/g, 'йєй;');
+
+            // "йє{∅|й|ў|к|т|п|ң|н|м}" -> "йє;"  (언제나 ㅕ)
+            // йєй→ㅖ, йєў→ᅾ 는 medial에서 처리
+            s = s.replace(/йє(?=(?:[йўктпңнм]|;|$))/g, 'йє;');
+            s = s.replace(/йє$/g, 'йє;');
+
+            // "ўє" 보호 (ўє는 ㅡ 경로 아님)
+            s = s.replace(/ўє(?!;)/g, 'ўє;');
+
+            // "{є|о}ў" -> "ыў;"  (йєў 제외)
+            s = s.replace(/(?<!й)(є|о)ў/g, 'ыў;');
+
+            // "єй" -> "ой;"  (유지)
+            s = s.replace(/(?<!й)єй/g, 'ой;');
+
+            // "є" -> "ы;"  (йє/ўє 아닌 є만)
+            // є + {∅|й|ў|к|т|п|ң|н|м} → ы → ㅡ  (ый/ㅢ 로 가지 않음)
+            s = s.replace(/(?<![йў])є(?![̂;])/g, 'ы;');
+
+            // "ўо" -> "о;"
+            s = s.replace(/ўо/g, 'о;');
+            // "о" -> "ъ;"  (о̂·ой 보호)
+            s = s.replace(/(?<![;])о(?![й̂;])/g, 'ъ;');
+
+            // "ы" -> "ый;"  (ii만 → ㅢ)
+            // є에서 온 ы;(세미콜론 있음)는 변환하지 않음 → ㅡ 유지
+            // ыў 제외
+            s = s.replace(/ы(?![йў;])/g, 'ый;');
+
+            const step2 = s;
+
+            // ---------------------------------------------------------
+            // [3단계: 한글 자모 전사 (transcribe)]
+            // ---------------------------------------------------------
+            // 재변환 방지 부호(;) 제거
+            let clean = s.replace(/;/g, '');
+
+            // 종성 추출 (-ㅂ, -ㄹ, -ㄱ, -ㅁ, -ㄴ, -ㅇ)
+            let jongseong = '';
+            const codaExtract = clean.match(/(п,|т,|к,|м,|н,|ң,)$/);
+            if (codaExtract) {
+                const c = codaExtract[1];
+                const jongMap = {
+                    'п,': 'ㅂ', 'т,': 'ㄹ', 'к,': 'ㄱ',
+                    'м,': 'ㅁ', 'н,': 'ㄴ', 'ң,': 'ㆁ'
+                };
+                jongseong = jongMap[c] || '';
+                clean = clean.slice(0, -c.length);
+            }
+
+            // 초성(성모) 추출
+            let choseong = '';
+            const onsetMatch = clean.match(/^(б|п|П|м|д|т|Т|н|л|г|к|К|ң|њ|х|Х|ѕ|ђ|џ|ц|ћ|ч|Ц|Ћ|Ч|ќ|с|С|щ|Щ|ш|Ш|Ж)/);
+            if (onsetMatch) {
+                const o = onsetMatch[1];
+                const choMap = {
+                    'б': 'ㅂ', 'п': 'ㅍ', 'П': 'ㅃ', 'м': 'ㅁ',
+                    'д': 'ㄷ', 'т': 'ㅌ', 'Т': 'ㄸ', 'н': 'ㄴ', 'л': 'ㄹ',
+                    'г': 'ㄱ', 'к': 'ㅋ', 'К': 'ㄲ',
+                    'ң': 'ㆁ', 'њ': 'ㆁ',
+                    'х': 'ㅎ', 'Х': 'ᅘ',
+                    'ѕ': 'ㅈ', 'ђ': 'ㅈ', 'џ': 'ᅐ',
+                    'ц': 'ㅊ', 'ћ': 'ㅊ', 'ч': 'ᅕ',
+                    'Ц': 'ㅉ', 'Ћ': 'ㅉ', 'Ч': 'ᅑ',
+                    'ќ': 'ㅿ', 'с': 'ㅅ', 'С': 'ㅆ', 'щ': 'ㅅ', 'Щ': 'ㅆ',
+                    'ш': 'ᄾ', 'Ш': 'ᄿ', 'Ж': 'ㅿ'
+                };
+                choseong = choMap[o] || 'ㅇ';
+                clean = clean.slice(o.length);
+            } else {
+                choseong = 'ㅇ';
+            }
+
+            // 중성(운모) 매핑 (긴 패턴부터 일치)
+            // 스펙: є̂ → ᅟힺ, о̂ → ᅟힼ
+            const medialRules = [
+                ['йаў', 'ᅸ'], ['аў', 'ᅶ'], ['йєў', 'ᅾ'], ['єў', 'ᅻ'], ['йоў', 'ᅾ'], ['оў', 'ᅻ'],
+                ['ўай', 'ㅙ'], ['ўа', 'ㅘ'], ['ўєй', 'ㅞ'], ['ўє', 'ㅝ'],
+                ['ҩай', 'ㆈ'], ['ҩа', 'ㆇ'], ['ҩєй', 'ㆋ'], ['ҩє', 'ㆊ'],
+                ['ўо', 'ᆂ'],
+                ['йай', 'ㅒ'], ['ай', 'ㅐ'], ['йа', 'ㅑ'],
+                ['йєй', 'ㅖ'], ['єй', 'ㅔ'], ['йє', 'ㅕ'],
+                ['йой', 'ㆉ'], ['йуй', 'ㆌ'], ['йо', 'ㅛ'], ['ой', 'ㆎ'],
+                ['йу', 'ㅠ'], ['йи', 'ㅣ'], ['йъ', 'ᆢ'], ['ўи', 'ㅟ'], ['уй', 'ㅟ'], ['ъй', 'ㆎ'],
+                ['ый', 'ㅢ'],  // ы → ый → ㅢ
+                ['ыў', 'ᆕ'],  // {є|о}ў → ыў → ᆕ
+                ['йы', 'ᆖ'],  // йє → йы → ᆖ
+                ['ъў', 'ᆠ'],  // ъў → ᆠ
+                // ★ 스펙 반영: є̂ → ힺ, о̂ → ힼ (compose 단계에서 ᅟ 처리)
+                ['є̂', 'ힺ'], ['о̂', 'ힼ'],
+                ['а', 'ㅏ'], ['є', 'ㅓ'], ['о', 'ㅗ'], ['у', 'ㅜ'],
+                ['ъ', 'ㆍ'], ['ы', 'ㅡ'], ['и', 'ㅣ']
+            ];
+
+            let jungseong = '';
+            if (clean === 'й') jungseong = 'ㅣ';
+            else if (clean === 'ў') jungseong = 'ㅜ';
+            else {
+                for (const [pat, jamo] of medialRules) {
+                    if (clean === pat) {
+                        jungseong = jamo;
+                        break;
+                    }
+                }
+                if (!jungseong && clean.length > 0) {
+                    let temp = clean;
+                    for (const [pat, jamo] of medialRules) {
+                        temp = temp.replace(pat, jamo);
+                    }
+                    jungseong = temp.charAt(0);
+                }
+            }
+
+            const step3 = `${choseong}+${jungseong || '∅'}${jongseong ? '+' + jongseong : ''}${tone}`;
+
+            const composed = composeHangulSyllable(choseong, jungseong, jongseong, tone);
+
+            return {
+                out: composed.text,
+                step1,
+                step2,
+                step3,
+                isOld: composed.isOld
+            };
+        }
+
+        /**
+         * 전체 입력 텍스트 파싱 및 실시간 변환 실행
+         */
+        function convertText() {
+            const input = document.getElementById('hakka-input').value;
+            document.getElementById('char-count').textContent = `${input.length} 자`;
+
+            const outputEl = document.getElementById('hangul-output');
+            const debug1El = document.getElementById('debug-step1');
+            const debug2El = document.getElementById('debug-step2');
+            const debug3El = document.getElementById('debug-step3');
+            const statsEl = document.getElementById('syllable-stats');
+            const modeBadgeEl = document.getElementById('mode-badge');
+
+            if (!input.trim()) {
+                outputEl.textContent = '';
+                debug1El.textContent = '-';
+                debug2El.textContent = '-';
+                debug3El.textContent = '-';
+                statsEl.textContent = '';
+                modeBadgeEl.textContent = '대기 중';
+                return;
+            }
+
+            // 로마자 덩어리(알파벳+ü+성조)와 그 외 구분자 분리
+            // 덩어리 안에서는 띄어쓰기 없이도 음절 단위로 재분할 (maximal onset)
+            const tokens = input.split(/([a-zA-ZüÜ]+[ˊˇˋˉ⁺ˆ`1-9]*)/g);
+
+            let resultParts = [];
+            let s1List = [];
+            let s2List = [];
+            let s3List = [];
+            let modernCount = 0;
+            let oldCount = 0;
+
+            for (const token of tokens) {
+                if (!token) continue;
+                if (/^[a-zA-ZüÜ]+[ˊˇˋˉ⁺ˆ`1-9]*$/.test(token)) {
+                    // 연속 로마자 → 음절 단위로 분할
+                    const syllables = segmentSyllables(token);
+                    for (const syl of syllables) {
+                        const res = transcribeSyllable(syl);
+                        resultParts.push(res.out);
+                        if (res.step1 || res.step2 || res.step3) {
+                            s1List.push(res.step1);
+                            s2List.push(res.step2);
+                            s3List.push(res.step3);
+                            if (res.isOld) oldCount++;
+                            else modernCount++;
+                        }
+                    }
+                } else {
+                    // 하이픈(-) 및 일반 띄어쓰기(스페이스/탭)는 한글 무띄어쓰기 원칙에 따라 제거
+                    // 줄바꿈과 문장부호는 유지
+                    const cleanedPunct = token.replace(/[- \t]+/g, '');
+                    if (!cleanedPunct) {
+                        continue;
+                    }
+                    resultParts.push(cleanedPunct);
+                }
+            }
+
+            outputEl.textContent = resultParts.join('');
+            debug1El.textContent = s1List.join(' · ') || '-';
+            debug2El.textContent = s2List.join(' · ') || '-';
+            debug3El.textContent = s3List.join(' · ') || '-';
+
+            const totalSyllables = modernCount + oldCount;
+            if (totalSyllables > 0) {
+                statsEl.textContent = `총 ${totalSyllables}음절 (완성형 ${modernCount} / 첫가끝 ${oldCount})`;
+                if (oldCount > 0 && modernCount > 0) {
+                    modeBadgeEl.textContent = '완성형 + 첫가끝 혼용';
+                } else if (oldCount > 0) {
+                    modeBadgeEl.textContent = '옛한글 첫가끝';
+                } else {
+                    modeBadgeEl.textContent = '현대한글 완성형';
+                }
+            } else {
+                statsEl.textContent = '';
+                modeBadgeEl.textContent = '자동 판별';
+            }
+        }
+
+        // 초기 실행
+        window.addEventListener('DOMContentLoaded', () => {
+            convertText();
+        });
+    </script>
+
+
+</body></html>
